@@ -1,0 +1,9 @@
+General-purpose Telegram Bot
+
+Objective:
+
+Plug-n-play interaction with ~any API effectively providing front-end layer in for a Telegram bot.
+
+Approach:
+
+Take responsibility for interacting with the user and dispatching input to the functions provided by the API.
