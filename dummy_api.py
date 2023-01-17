@@ -3,7 +3,7 @@
 from itertools import repeat
 from functools import wraps
 
-def args_validation(*, req_types): #annotate the decorator
+def args_validation(*, req_types=None, **kwargs): #annotate the decorator
     def _validation(func): 
         @wraps(func)
         def _wrapper(*args, **kwargs):
@@ -18,7 +18,7 @@ def args_validation(*, req_types): #annotate the decorator
     return _validation
 
 
-@args_validation({'n': int})
+@args_validation(n=int)
 def dummy_function(n: int = 0) -> int:
     a, b = 0, 1
     for _ in repeat(None, n):
