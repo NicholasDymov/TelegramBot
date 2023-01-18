@@ -1,21 +1,7 @@
 #!/usr/bin/env python
 
 from itertools import repeat
-from functools import wraps
-
-def args_validation(*, req_types=None, **kwargs): #annotate the decorator
-    def _validation(func): 
-        @wraps(func)
-        def _wrapper(*args, **kwargs):
-            n = args[0]
-            if not isinstance(n, req_type):
-                raise TypeError(f'n must be of type consistent with {req_type.__name__}')
-            elif n < 0:
-                raise ValueError('n must be non-negative')
-            else:
-                return func(*args, **kwargs)
-        return _wrapper
-    return _validation
+from args_validation import args_validation
 
 
 @args_validation(n=int)
@@ -37,7 +23,7 @@ def dummy_generator(): #annotate the generator
 if __name__ == '__main__':
     for i in (5, 0, -2, None, 1.2, -4.5, 'abc', list(), tuple()):
         try:
-            print(dummy_function(i))
+            print(dummy_function(n=i))
         except Exception as inst:
             print(f'i = {i} raised {type(inst).__name__} with args: {inst}')
     gen = dummy_generator()
